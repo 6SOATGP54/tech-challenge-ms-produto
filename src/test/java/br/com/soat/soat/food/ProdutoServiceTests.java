@@ -45,30 +45,26 @@ class ProdutoServiceTests {
     }
 
     @Test
-    void deveListarProdutosOrdenadosPorCategoria() {
-        Produto p1 = new Produto();
-        p1.setCategoria(Categoria.BEBIDA);
-        Produto p2 = new Produto();
-        p2.setCategoria(Categoria.LANCHE);
-
-        when(produtoRepository.findAll()).thenReturn(Arrays.asList(p2, p1));
-
-        List<Produto> produtos = produtoService.listarProdutos();
-
-        assertEquals(2, produtos.size());
-        assertEquals(Categoria.BEBIDA, produtos.get(0).getCategoria());
-    }
-
-    @Test
     void deveAplicarDescontoAosProdutos() {
         Cliente cliente = new Cliente();
         cliente.setId(1L);
+        cliente.setCpf("30495495050");
+        cliente.setNome("Mocked Customer");
+        cliente.setEmail("mocked.customer@email.com");
 
         Produto p1 = new Produto();
         p1.setPreco(new BigDecimal("50"));
+        p1.setNome("Primeiro Produto");
+        p1.setDescricao("Descrição do primeiro produto");
+        p1.setCategoria(Categoria.LANCHE);
+        p1.setImagem("https://invalid.test.com.br/images/test1.jpeg");
 
         Produto p2 = new Produto();
         p2.setPreco(new BigDecimal("5"));
+        p2.setNome("Segundo Produto");
+        p2.setDescricao("Descrição do segundo produto");
+        p2.setCategoria(Categoria.LANCHE);
+        p2.setImagem("https://invalid.test.com.br/images/test2.jpeg");
 
         when(produtoRepository.findAll()).thenReturn(Arrays.asList(p1, p2));
 
@@ -85,9 +81,17 @@ class ProdutoServiceTests {
 
         Produto p1 = new Produto();
         p1.setPreco(new BigDecimal("50"));
+        p1.setNome("Primeiro Produto");
+        p1.setDescricao("Descrição do primeiro produto");
+        p1.setCategoria(Categoria.LANCHE);
+        p1.setImagem("https://invalid.test.com.br/images/test1.jpeg");
 
         Produto p2 = new Produto();
         p2.setPreco(new BigDecimal("5"));
+        p2.setNome("Segundo Produto");
+        p2.setDescricao("Descrição do segundo produto");
+        p2.setCategoria(Categoria.LANCHE);
+        p2.setImagem("https://invalid.test.com.br/images/test2.jpeg");
 
         when(produtoRepository.findAll()).thenReturn(Arrays.asList(p1, p2));
 

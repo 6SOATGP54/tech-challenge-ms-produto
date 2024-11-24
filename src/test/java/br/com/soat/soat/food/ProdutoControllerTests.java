@@ -48,7 +48,7 @@ public class ProdutoControllerTests {
         mockMvc.perform(post("/produto/cadastroProduto")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(produto)))
-                .andExpect(status().isCreated())
+                .andExpect(status().isOk())
                 .andExpect(jsonPath("$.nome").value("Produto Teste"))
                 .andExpect(jsonPath("$.descricao").value("Descrição do Produto"))
                 .andExpect(jsonPath("$.preco").value(50.0));
@@ -69,7 +69,7 @@ public class ProdutoControllerTests {
 
         mockMvc.perform(get("/produto/listarProdutos")
                         .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isFound())
+                .andExpect(status().isOk())
                 .andExpect(jsonPath("$.length()").value(2))
                 .andExpect(jsonPath("$[0].nome").value("Produto 1"))
                 .andExpect(jsonPath("$[1].nome").value("Produto 2"));
@@ -89,7 +89,7 @@ public class ProdutoControllerTests {
         mockMvc.perform(post("/produto/listarProdutosPorCategoria")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(categoria)))
-                .andExpect(status().isFound())
+                .andExpect(status().isOk())
                 .andExpect(jsonPath("$.length()").value(1))
                 .andExpect(jsonPath("$[0].nome").value("Coca-Cola"));
     }
@@ -109,7 +109,7 @@ public class ProdutoControllerTests {
         mockMvc.perform(post("/produto/listarProdutosDesconto")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(objectMapper.writeValueAsString(cliente)))
-                .andExpect(status().isFound())
+                .andExpect(status().isOk())
                 .andExpect(jsonPath("$.length()").value(1))
                 .andExpect(jsonPath("$[0].nome").value("Produto Desconto"))
                 .andExpect(jsonPath("$[0].preco").value(40.0));

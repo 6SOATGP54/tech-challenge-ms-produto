@@ -58,6 +58,7 @@ class ProdutoServiceTests {
         p1.setDescricao("Descrição do primeiro produto");
         p1.setCategoria(Categoria.LANCHE);
         p1.setImagem("https://invalid.test.com.br/images/test1.jpeg");
+        p1.setarDataCadastro();
 
         Produto p2 = new Produto();
         p2.setPreco(new BigDecimal("5"));
@@ -65,6 +66,7 @@ class ProdutoServiceTests {
         p2.setDescricao("Descrição do segundo produto");
         p2.setCategoria(Categoria.LANCHE);
         p2.setImagem("https://invalid.test.com.br/images/test2.jpeg");
+        p2.setarDataCadastro();
 
         when(produtoRepository.findAll()).thenReturn(Arrays.asList(p1, p2));
 

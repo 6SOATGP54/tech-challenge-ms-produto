@@ -8,11 +8,11 @@
 		<version>3.2.4</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>br.com.soat</groupId>
-	<artifactId>soat-food</artifactId>
+	<groupId>com.tech-challenge</groupId>
+	<artifactId>ms-produto</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>soat-food</name>
-	<description>SOAT food</description>
+	<name>ms-produto</name>
+	<description>tech-challenge-ms-produto</description>
 	<properties>
 		<java.version>17</java.version>
 	</properties>
@@ -92,6 +92,11 @@
 			<artifactId>unlogged-sdk</artifactId>
 			<version>0.6.4</version>
 		</dependency>
+		<dependency>
+			<groupId>org.jacoco</groupId> 
+			<artifactId>jacoco-maven-plugin</artifactId>
+			<version>0.8.12</version>
+		</dependency>
 	</dependencies>
 
 	<build>
@@ -107,6 +112,26 @@
 						</exclude>
 					</excludes>
 				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>0.8.12</version>
+				<executions>
+					<execution>
+						<id>jacoco-initialize</id>
+						<goals>
+							<goal>prepare-agent</goal>
+						</goals>
+					</execution>
+					<execution>
+						<id>jacoco-site</id>
+						<phase>package</phase>
+						<goals>
+							<goal>report</goal>
+						</goals>
+					</execution>
+				</executions>
 			</plugin>
 		</plugins>
 	</build>

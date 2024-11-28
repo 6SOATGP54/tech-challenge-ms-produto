@@ -1,0 +1,70 @@
+services:
+  db-sql:
+    image: postgres:16
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - db-data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+    networks:
+      - backend
+    restart: always
+
+# adicionar MongoDB aqui
+    
+    ms-pedido:
+    build:
+      context: https://github.com/6SOATGP54/tech-challenge-ms-pedido.git
+      dockerfile: Dockerfile
+    ports:
+      - "8092:8091" # Mapeia a porta 8091 do contêiner para 8092 no host
+    depends_on:
+      - db-sql
+    environment:
+      SPRING_DATASOURCE_URL: ${SPRING_DATASOURCE_URL}
+      SPRING_DATASOURCE_USERNAME: ${SPRING_DATASOURCE_USERNAME}
+      SPRING_DATASOURCE_PASSWORD: ${SPRING_DATASOURCE_PASSWORD}
+    networks:
+      - backend
+    container_name: ms_pedido
+
+  ms-pagamento:
+    build:
+      context: https://github.com/6SOATGP54/tech-challenge-ms-pagamento.git
+      dockerfile: Dockerfile
+    ports:
+      - "8093:8091" # Mapeia a porta 8091 do contêiner para 8093 no host
+    depends_on:
+      - db-sql
+    environment:
+      SPRING_DATASOURCE_URL: ${SPRING_DATASOURCE_URL}
+      SPRING_DATASOURCE_USERNAME: ${SPRING_DATASOURCE_USERNAME}
+      SPRING_DATASOURCE_PASSWORD: ${SPRING_DATASOURCE_PASSWORD}
+    networks:
+      - backend
+    container_name: ms_pagamento
+
+  ms-produto:
+    build:
+      context: https://github.com/6SOATGP54/tech-challenge-ms-produto.git
+      dockerfile: Dockerfile
+    ports:
+      - "8094:8091" # Mapeia a porta 8091 do contêiner para 8094 no host
+    depends_on:
+      - db-sql
+    environment:
+      SPRING_DATASOURCE_URL: ${SPRING_DATASOURCE_URL}
+      SPRING_DATASOURCE_USERNAME: ${SPRING_DATASOURCE_USERNAME}
+      SPRING_DATASOURCE_PASSWORD: ${SPRING_DATASOURCE_PASSWORD}
+    networks:
+      - backend
+    container_name: ms_produto
+
+networks:
+  backend:
+
+volumes:
+  db-data:

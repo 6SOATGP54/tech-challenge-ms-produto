@@ -52,6 +52,7 @@ services:
     depends_on:
       - db-nosql
       - rabbit-mq
+      - ms-pagamento
     environment:
       RABBIT_HOST: ${RABBIT_HOST}
       RABBIT_USER: ${RABBIT_USER}

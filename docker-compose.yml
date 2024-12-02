@@ -13,20 +13,51 @@ services:
       - backend
     restart: always
 
-# adicionar MongoDB aqui
+  db-nosql:
+    image: mongodb/mongodb-community-server:6.0-ubi8
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
+      MONGO_INITDB_DATABASE: ${DATABASE_NOSQL}
+      ME_CONFIG_BASICAUTH: false
+    ports:
+      - "27017:27017"
+    networks:
+      - backend
+    restart: always
+
+  rabbit-mq:
+    image: rabbitmq:4.0-management
+    environment:
+      RABBIT_HOST: ${RABBIT_HOST}
+      RABBITMQ_DEFAULT_USER: ${RABBIT_USER}
+      RABBITMQ_DEFAULT_PASS: ${RABBIT_PASSWORD}
+    ports:
+      - "5672:5672"   # protocal AMQP
+      - "15672:15672" # management
+    networks:
+      - backend
+    restart: always
+
     
-    ms-pedido:
+  ms-pedido:
     build:
       context: https://github.com/6SOATGP54/tech-challenge-ms-pedido.git
       dockerfile: Dockerfile
     ports:
-      - "8092:8091" # Mapeia a porta 8091 do contêiner para 8092 no host
+      - "8084:8084" # Mapeia a porta 8091 do contêiner para 8092 no host
     depends_on:
-      - db-sql
+      - db-nosql
+      - rabbit-mq
     environment:
-      SPRING_DATASOURCE_URL: ${SPRING_DATASOURCE_URL}
-      SPRING_DATASOURCE_USERNAME: ${SPRING_DATASOURCE_USERNAME}
-      SPRING_DATASOURCE_PASSWORD: ${SPRING_DATASOURCE_PASSWORD}
+      RABBIT_HOST: ${RABBIT_HOST}
+      RABBIT_USER: ${RABBIT_USER}
+      RABBIT_PASSWORD: ${RABBIT_PASSWORD}
+      DATABASE_NOSQL: ${DATABASE_NOSQL}
+      HOST_NOSQL: ${HOST_NOSQL}
+      NOSQL_USER: ${NOSQL_USER}
+      NOSQL_PASSWORD: ${NOSQL_PASSWORD}
+      NOSQL_PORT: ${NOSQL_PORT}
     networks:
       - backend
     container_name: ms_pedido
@@ -36,13 +67,19 @@ services:
       context: https://github.com/6SOATGP54/tech-challenge-ms-pagamento.git
       dockerfile: Dockerfile
     ports:
-      - "8093:8091" # Mapeia a porta 8091 do contêiner para 8093 no host
+      - "8083:8083" # Mapeia a porta 8091 do contêiner para 8093 no host
     depends_on:
-      - db-sql
+      - db-nosql
+      - rabbit-mq
     environment:
-      SPRING_DATASOURCE_URL: ${SPRING_DATASOURCE_URL}
-      SPRING_DATASOURCE_USERNAME: ${SPRING_DATASOURCE_USERNAME}
-      SPRING_DATASOURCE_PASSWORD: ${SPRING_DATASOURCE_PASSWORD}
+      RABBIT_HOST: ${RABBIT_HOST}
+      RABBIT_USER: ${RABBIT_USER}
+      RABBIT_PASSWORD: ${RABBIT_PASSWORD}
+      DATABASE_NOSQL: ${DATABASE_NOSQL}
+      HOST_NOSQL: ${HOST_NOSQL}
+      NOSQL_USER: ${NOSQL_USER}
+      NOSQL_PASSWORD: ${NOSQL_PASSWORD}
+      NOSQL_PORT: ${NOSQL_PORT}
     networks:
       - backend
     container_name: ms_pagamento
@@ -56,9 +93,10 @@ services:
     depends_on:
       - db-sql
     environment:
-      SPRING_DATASOURCE_URL: ${SPRING_DATASOURCE_URL}
-      SPRING_DATASOURCE_USERNAME: ${SPRING_DATASOURCE_USERNAME}
-      SPRING_DATASOURCE_PASSWORD: ${SPRING_DATASOURCE_PASSWORD}
+      HOST_SQL:  ${HOST_SQL}
+      DATABASE_SQL:  ${DATABASE_SQL}
+      SQL_USER:  ${SQL_USER}
+      SQL_PASSWORD: ${SQL_PASSWORD}
     networks:
       - backend
     container_name: ms_produto

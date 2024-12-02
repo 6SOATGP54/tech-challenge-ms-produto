@@ -34,7 +34,10 @@ Cada microsserviço possui um banco de dados independente, garantindo isolamento
 
 ## Tecnologias Utilizadas
 
-- **Linguagens e Frameworks**: Java <img src="./docs/logos/java-logo.png" width="16"></img> com Springboot <img src="./docs/logos/spring-boot-logo.png" width="16"></img>
+- **Linguagens e Frameworks**:
+  - Java <img src="./docs/logos/java-logo.png" width="16"></img> com Springboot <img src="./docs/logos/spring-boot-logo.png" width="16"></img> (desenvolvimento)
+  - RabbitMQ (mensageria) <img src="./docs/logos/rabbitmq-logo.png" width="16"></img>
+- **API Gateway**: integração [[Link]](https://github.com/6SOATGP54/tech-challenge-api-gateway)
 - **Bancos de Dados**: PostgreSQL <img src="./docs/logos/postgresql-logo.png" width="16"></img> e MongoDB <img src="./docs/logos/mongodb-logo.png" width="16"></img>
 - **Ferramentas de CI/CD**: GitHub Actions <img src="./docs/logos/github-actions-logo.png" width="16"></img>
 - **Ferramentas de Testes**:

@@ -12,6 +12,7 @@ services:
     networks:
       - backend
     restart: always
+    container_name: db-sql
 
   db-nosql:
     image: mongodb/mongodb-community-server:6.0-ubi8
@@ -25,6 +26,7 @@ services:
     networks:
       - backend
     restart: always
+    container_name: db-nosql
 
   rabbit-mq:
     image: rabbitmq:4.0-management
@@ -38,6 +40,7 @@ services:
     networks:
       - backend
     restart: always
+    container_name: rabbit-mq
 
     
   ms-pedido:

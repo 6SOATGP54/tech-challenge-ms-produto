@@ -5,9 +5,9 @@ WORKDIR /home
 
 #Envoiroments
 ENV URL_DB=""  \
-    HOST_DB="" \
-    DB_USER="" \
-    DB_PASSWORD=""
+    HOST_SQL="" \
+    SQL_USER="" \
+    SQL_PASSWORD=""
 
 # updates source list
 RUN apk update

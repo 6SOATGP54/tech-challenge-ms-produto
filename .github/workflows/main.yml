@@ -55,7 +55,7 @@ jobs:
             ${{ runner.os }}-maven-
 
       - name: Run Tests
-        run: mvn test
+        run:  mvn test
 
   sonar-analysis:
     name: SonarQube
@@ -91,7 +91,9 @@ jobs:
   docker-build-push:
     name: Build and Push Docker Image
     runs-on: ubuntu-latest
-    needs: sonar-analysis
+    needs:
+    - sonar-analysis
+    - build-test
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3

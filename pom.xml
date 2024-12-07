@@ -131,6 +131,14 @@
                             <formats>
                                 <format>XML</format>
                             </formats>
+                            <excludes>
+                                <!-- Ignora classes ou pacotes específicos -->
+                                <exclude>**/model/**</exclude> <!-- Exemplo: ignora tudo em 'model' -->
+                                <exclude>**/repository/**</exclude>
+                                <exclude>**/enums/**</exclude>
+                                <exclude>**/controller/**</exclude>
+                                <exclude>**/utils/**</exclude><!-- Exemplo: ignora arquivos gerados -->
+                            </excludes>
                         </configuration>
                     </execution>
                 </executions>

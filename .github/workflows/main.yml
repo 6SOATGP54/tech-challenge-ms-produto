@@ -90,6 +90,8 @@ jobs:
           -Dsonar.projectKey=6SOATGP54_tech-challenge-ms-pedido \
           -Dsonar.host.url=https://sonarcloud.io \
           -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+          -Dsonar.java.binaries=target/classes
+          -Dsonar.exclusions=**/docs/**
 
   docker-build-push:
     name: Build and Push Docker Image

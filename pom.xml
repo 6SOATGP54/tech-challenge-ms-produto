@@ -94,12 +94,6 @@
 			<artifactId>unlogged-sdk</artifactId>
 			<version>0.6.4</version>
 		</dependency>
-		<dependency>
-			<groupId>org.jacoco</groupId> 
-			<artifactId>jacoco-maven-plugin</artifactId>
-			<version>0.8.12</version>
-		</dependency>
-
 	</dependencies>
 
 	<build>
@@ -116,11 +110,6 @@
 					</excludes>
 				</configuration>
 			</plugin>
-				<plugin>
-					<groupId>org.sonarsource.scanner.maven</groupId>
-					<artifactId>sonar-maven-plugin</artifactId>
-					<version>5.0.0.4389</version> <!-- Use a versão especificada, conforme o aviso -->
-				</plugin>
 			<plugin>
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>

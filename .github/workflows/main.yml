@@ -58,9 +58,10 @@ jobs:
         run: mvn test
 
   sonar-analysis:
-    name: Build and Analyze
+    name: SonarQube
     runs-on: ubuntu-latest
-
+    needs: build
+    
     steps:
       - uses: actions/checkout@v4
         with:
@@ -89,7 +90,7 @@ jobs:
       - name: Build and Analyze
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=6SOATGP54_tech-challenge-ms-pedido
+        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.organization=6soatgp54 -Dsonar.projectKey=6SOATGP54_tech-challenge-ms-pedido
 
   docker-build-push:
     name: Build and Push Docker Image

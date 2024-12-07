@@ -14,9 +14,9 @@
 	<name>ms-produto</name>
 	<description>tech-challenge-ms-produto</description>
 	<properties>
-		<java.version>17</java.version>
-		<sonar.organization>6soatgp54</sonar.organization>
-		<sonar.host.url>https://sonarcloud.io</sonar.host.url>
+			<java.version>17</java.version>
+			<sonar.organization>6soatgp54</sonar.organization>
+			<sonar.host.url>https://sonarcloud.io</sonar.host.url>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -116,6 +116,11 @@
 					</excludes>
 				</configuration>
 			</plugin>
+				<plugin>
+					<groupId>org.sonarsource.scanner.maven</groupId>
+					<artifactId>sonar-maven-plugin</artifactId>
+					<version>5.0.0.4389</version> <!-- Use a versão especificada, conforme o aviso -->
+				</plugin>
 			<plugin>
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>

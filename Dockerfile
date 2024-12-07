@@ -4,10 +4,10 @@ LABEL maintainer="https://github.com/6SOATGP54"
 WORKDIR /home
 
 #Envoiroments
-ENV URL_DB=""  \
-    HOST_DB="" \
-    DB_USER="" \
-    DB_PASSWORD=""
+ENV HOST_SQL=""  \
+    DATABASE_SQL="" \
+    SQL_USER="" \
+    SQL_PASSWORD=""
 
 # updates source list
 RUN apk update

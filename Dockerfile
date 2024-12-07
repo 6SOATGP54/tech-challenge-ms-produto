@@ -4,8 +4,8 @@ LABEL maintainer="https://github.com/6SOATGP54"
 WORKDIR /home
 
 #Envoiroments
-ENV URL_DB=""  \
-    HOST_SQL="" \
+ENV HOST_SQL=""  \
+    DATABASE_SQL="" \
     SQL_USER="" \
     SQL_PASSWORD=""
 

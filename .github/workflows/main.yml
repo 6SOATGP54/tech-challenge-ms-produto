@@ -4,7 +4,7 @@ on:
   merge:
     branches:
       - main
-	  
+
 jobs:
   build:
     name: Build Java

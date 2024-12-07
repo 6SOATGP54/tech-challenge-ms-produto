@@ -1,7 +1,7 @@
 name: CI/CD Pipeline
 
 on:
-  merge:
+  pull_request:
     branches:
       - main
 
@@ -91,7 +91,6 @@ jobs:
     name: Build and Push Docker Image
     runs-on: ubuntu-latest
     needs: sonar-analysis
-
     steps:
       - name: Checkout Code
         uses: actions/checkout@v3

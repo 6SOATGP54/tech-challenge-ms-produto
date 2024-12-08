@@ -138,6 +138,7 @@
                                 <exclude>**/enums/**</exclude>
                                 <exclude>**/controller/**</exclude>
                                 <exclude>**/utils/**</exclude><!-- Exemplo: ignora arquivos gerados -->
+                                <exclude>**/food/MSProdutoApplication.java</exclude>
                             </excludes>
                         </configuration>
                     </execution>
